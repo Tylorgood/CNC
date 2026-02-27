@@ -1,0 +1,81 @@
+{
+  "weeks": {
+    "1": {
+      "title": "Foundation Week",
+      "requirements": [
+        { "id": "w1-safety-quiz", "name": "Safety Quiz", "digital": true, "completed": false },
+        { "id": "w1-blueprint-quiz", "name": "Blueprint Reading Quiz", "digital": true, "completed": false },
+        { "id": "w1-measurement-log", "name": "Measurement Log", "digital": true, "completed": false },
+        { "id": "w1-cnc-basics", "name": "CNC Basics Assessment", "digital": true, "completed": false },
+        { "id": "w1-tooling-intro", "name": "Tooling Introduction", "digital": false, "completed": false },
+        { "id": "w1-shop-lingo", "name": "Shop Lingo Worksheet", "digital": true, "completed": false },
+        { "id": "w1-speed-feed", "name": "Speed & Feed Calculations", "digital": true, "completed": false },
+        { "id": "w1-first-article", "name": "First Article Inspection", "digital": true, "completed": false }
+      ]
+    },
+    "2": {
+      "title": "Measurement & Blueprint",
+      "requirements": [
+        { "id": "w2-micrometer-practice", "name": "Micrometer Practice", "digital": true, "completed": false },
+        { "id": "w2-caliper-practice", "name": "Caliper Practice", "digital": true, "completed": false },
+        { "id": "w2-blueprint-advanced", "name": "Advanced Blueprint Reading", "digital": true, "completed": false },
+        { "id": "w2-gdt-basics", "name": "GDT Basics", "digital": true, "completed": false }
+      ]
+    },
+    "3": {
+      "title": "CNC Basics",
+      "requirements": [
+        { "id": "w3-machine-orientation", "name": "Machine Orientation", "digital": false, "completed": false },
+        { "id": "w3-work-holding", "name": "Work Holding Methods", "digital": true, "completed": false },
+        { "id": "w3-tool-setting", "name": "Tool Setting Practice", "digital": false, "completed": false },
+        { "id": "w3-first-cut", "name": "First Cut Operation", "digital": false, "completed": false }
+      ]
+    },
+    "4": {
+      "title": "Programming Fundamentals",
+      "requirements": [
+        { "id": "w4-g-code-basics", "name": "G-Code Basics", "digital": true, "completed": false },
+        { "id": "w4-m-code-basics", "name": "M-Code Basics", "digital": true, "completed": false },
+        { "id": "w4-canned-cycles", "name": "Canned Cycles", "digital": true, "completed": false },
+        { "id": "w4-program-write", "name": "Write First Program", "digital": true, "completed": false }
+      ]
+    },
+    "5": {
+      "title": "Advanced Operations",
+      "requirements": [
+        { "id": "w5-finish-pass", "name": "Finish Pass Techniques", "digital": false, "completed": false },
+        { "id": "w5-roughing", "name": "Roughing Strategies", "digital": false, "completed": false },
+        { "id": "w5-multi-axis", "name": "Multi-Axis Introduction", "digital": true, "completed": false },
+        { "id": "w5-fixturing", "name": "Advanced Fixturing", "digital": false, "completed": false }
+      ]
+    },
+    "6": {
+      "title": "Quality & Inspection",
+      "requirements": [
+        { "id": "w6-inspection-tech", "name": "Inspection Techniques", "digital": false, "completed": false },
+        { "id": "w6-tolerance-analysis", "name": "Tolerance Analysis", "digital": true, "completed": false },
+        { "id": "w6-first-article", "name": "First Article Inspection", "digital": true, "completed": false },
+        { "id": "w6-correction", "name": "Offset Correction", "digital": false, "completed": false }
+      ]
+    },
+    "7": {
+      "title": "Production & Optimization",
+      "requirements": [
+        { "id": "w7-cycle-time", "name": "Cycle Time Optimization", "digital": true, "completed": false },
+        { "id": "w7-tool-life", "name": "Tool Life Management", "digital": true, "completed": false },
+        { "id": "w7-production-run", "name": "Production Run", "digital": false, "completed": false },
+        { "id": "w7-troubleshooting", "name": "Troubleshooting", "digital": true, "completed": false }
+      ]
+    },
+    "8": {
+      "title": "Final Review",
+      "requirements": [
+        { "id": "w8-final-exam", "name": "Final Exam", "digital": true, "completed": false },
+        { "id": "w8-practical", "name": "Practical Assessment", "digital": false, "completed": false },
+        { "id": "w8-portfolio", "name": "Portfolio Review", "digital": true, "completed": false },
+        { "id": "w8-mock-interview", "name": "Mock Interview", "digital": false, "completed": false },
+        { "id": "w8-graduation", "name": "Graduation Requirements", "digital": true, "completed": false }
+      ]
+    }
+  }
+}

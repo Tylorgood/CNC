@@ -1,0 +1,71 @@
+{
+  "students": [
+    {
+      "id": "marvin-001",
+      "name": "Marvin",
+      "start_date": "2026-02-17",
+      "graduation_date": "2026-02-27",
+      "status": "active",
+      "week": 8,
+      "day": 3,
+      "competencies": {
+        "cnc_operation": "in_progress",
+        "blueprint_reading": "completed",
+        "tooling": "in_progress",
+        "programming": "in_progress",
+        "speeds_feeds": "in_progress",
+        "safety": "completed",
+        "measurement": "completed"
+      },
+      "reflections": [
+        {
+          "date": "2026-02-23",
+          "period_1": "CNC Setup + Clean out",
+          "period_2": "Tramming Bridgeport Head",
+          "period_3": "Blueprint Reading",
+          "period_4": "Lathe Part Work",
+          "highlights": "",
+          "challenges": "",
+          "goals": ""
+        },
+        {
+          "date": "2026-02-24",
+          "period_1": "CNC with Kyle",
+          "period_2": "Tramming",
+          "period_3": "Blueprint Assignment",
+          "period_4": "Test Review (Micrometers + Videos)",
+          "highlights": "",
+          "challenges": "",
+          "goals": ""
+        }
+      ],
+      "mock_interview": {
+        "scheduled": "2026-02-24",
+        "time": "9am",
+        "status": "SUCCESS - Passed!"
+      },
+      "notes": "Graduation Friday Feb 27 - MOCK INTERVIEW TODAY 9AM"
+    },
+    {
+      "id": "kyle-001",
+      "name": "Kyle",
+      "start_date": "2026-02-24",
+      "graduation_date": "",
+      "status": "active",
+      "week": 1,
+      "day": 1,
+      "competencies": {
+        "cnc_operation": "in_progress",
+        "blueprint_reading": "pending",
+        "tooling": "pending",
+        "programming": "pending",
+        "speeds_feeds": "pending",
+        "safety": "pending",
+        "measurement": "pending"
+      },
+      "reflections": [],
+      "notes": "Day 1 - Started today!"
+    }
+  ],
+  "current_student_id": "marvin-001"
+}

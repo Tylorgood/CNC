@@ -1,0 +1,194 @@
+{
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Send email to RPS about interviews",
+      "description": "Email RPS about Mike Havis, Marvin, Keegan for potential interviews",
+      "due_date": "2026-02-23",
+      "status": "completed",
+      "priority": "high",
+      "category": "admin"
+    },
+    {
+      "id": "task-002",
+      "title": "Tell John to get cutters from KBC - CRITICAL",
+      "description": "Remind John to pick up cutters from KBC Tools - DISCUSS IN MEETING",
+      "due_date": "2026-02-24",
+      "status": "pending",
+      "priority": "high",
+      "category": "tooling"
+    },
+    {
+      "id": "task-003",
+      "title": "Scan lessons and put online",
+      "description": "Scan all lessons and upload to online system",
+      "due_date": "2026-02-23",
+      "status": "pending",
+      "priority": "medium",
+      "category": "admin"
+    },
+    {
+      "id": "task-004",
+      "title": "Finish Allegro prototype",
+      "description": "Complete the Allegro putter prototype",
+      "due_date": "2026-02-27",
+      "status": "in_progress",
+      "priority": "high",
+      "category": "project"
+    },
+    {
+      "id": "task-005",
+      "title": "Safety meeting - COMPLETED",
+      "description": "Monday morning safety meeting - DONE",
+      "due_date": "2026-02-23",
+      "status": "completed",
+      "priority": "high",
+      "category": "safety"
+    },
+    {
+      "id": "task-006",
+      "title": "Safety Updates 225 - IN PROGRESS",
+      "description": "Safety improvements list - SDS sheets created",
+      "due_date": "2026-02-24",
+      "status": "in_progress",
+      "priority": "high",
+      "category": "safety"
+    },
+    {
+      "id": "task-007",
+      "title": "CRM additions with Julie",
+      "description": "Add CRM features to LLM platform - DISCUSS IN MEETING",
+      "due_date": "2026-02-24",
+      "status": "pending",
+      "priority": "high",
+      "category": "admin"
+    },
+    {
+      "id": "task-008",
+      "title": "Schedule mock interviews for NEXT WEEK",
+      "description": "Push out rest of students for mock interviews",
+      "due_date": "2026-02-28",
+      "status": "pending",
+      "priority": "high",
+      "category": "student"
+    },
+    {
+      "id": "mon-001",
+      "title": "P1: CNC Setup + Clean out - DONE",
+      "description": "Marvin sets up CNC machine and cleans it out",
+      "due_date": "2026-02-23",
+      "status": "completed",
+      "priority": "high",
+      "category": "classwork"
+    },
+    {
+      "id": "mon-002",
+      "title": "P2: Tramming Bridgeport Head - DONE",
+      "description": "Work on tramming the Bridgeport head",
+      "due_date": "2026-02-23",
+      "status": "completed",
+      "priority": "high",
+      "category": "classwork"
+    },
+    {
+      "id": "mon-003",
+      "title": "P3: Blueprint Reading - DONE",
+      "description": "Blueprint reading session",
+      "due_date": "2026-02-23",
+      "status": "completed",
+      "priority": "high",
+      "category": "classwork"
+    },
+    {
+      "id": "mon-004",
+      "title": "P4: Lathe Part Work - DONE",
+      "description": "Work on lathe part",
+      "due_date": "2026-02-23",
+      "status": "completed",
+      "priority": "high",
+      "category": "classwork"
+    },
+    {
+      "id": "tue-001",
+      "title": "9am: Marvin MOCK INTERVIEW - SUCCESS!",
+      "description": "Marvin's mock interview - SUCCESS",
+      "due_date": "2026-02-24",
+      "status": "completed",
+      "priority": "high",
+      "category": "student"
+    },
+    {
+      "id": "tue-002",
+      "title": "10am: Candidate Interview #1",
+      "description": "Real interview with candidate",
+      "due_date": "2026-02-24",
+      "status": "pending",
+      "priority": "high",
+      "category": "student"
+    },
+    {
+      "id": "tue-003",
+      "title": "11am: Candidate Interview #2",
+      "description": "Real interview with candidate",
+      "due_date": "2026-02-24",
+      "status": "pending",
+      "priority": "high",
+      "category": "student"
+    },
+    {
+      "id": "tue-004",
+      "title": "11:30am: Weekly Team Up Meeting - TODAY",
+      "description": "Discuss: Pinnacle bundle, CRM with Julie, Safety 225, Graduation Friday",
+      "due_date": "2026-02-24",
+      "status": "in_progress",
+      "priority": "high",
+      "category": "meeting"
+    },
+    {
+      "id": "tue-005",
+      "title": "P1: CNC with Kyle - DONE",
+      "description": "Kyle joins - CNC first period",
+      "due_date": "2026-02-24",
+      "status": "completed",
+      "priority": "high",
+      "category": "classwork"
+    },
+    {
+      "id": "tue-006",
+      "title": "P2: Tramming again",
+      "description": "More tramming practice",
+      "due_date": "2026-02-24",
+      "status": "pending",
+      "priority": "high",
+      "category": "classwork"
+    },
+    {
+      "id": "tue-007",
+      "title": "Before Lunch: Math",
+      "description": "Math session before lunch",
+      "due_date": "2026-02-24",
+      "status": "pending",
+      "priority": "high",
+      "category": "classwork"
+    },
+    {
+      "id": "tue-008",
+      "title": "P3: Blueprint Reading Assignment",
+      "description": "Blueprint reading assignment",
+      "due_date": "2026-02-24",
+      "status": "pending",
+      "priority": "high",
+      "category": "classwork"
+    },
+    {
+      "id": "tue-009",
+      "title": "P4: Test Review - Micrometers + Videos",
+      "description": "Test review covering micrometers and videos",
+      "due_date": "2026-02-24",
+      "status": "pending",
+      "priority": "high",
+      "category": "classwork"
+    }
+  ],
+  "completed_history": []
+}

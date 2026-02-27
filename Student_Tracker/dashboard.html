@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNC Class Dashboard</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #eee; min-height: 100vh; }
+        
+        .header { background: #16213e; padding: 20px; border-bottom: 3px solid #0f3460; }
+        .header h1 { color: #e94560; font-size: 28px; }
+        .header .subtitle { color: #888; margin-top: 5px; }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
+        
+        .card { background: #16213e; border-radius: 10px; padding: 20px; border: 1px solid #0f3460; }
+        .card h2 { color: #e94560; font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #0f3460; }
+        
+        .student-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .student-name { font-size: 32px; font-weight: bold; color: #fff; }
+        .student-status { padding: 5px 15px; border-radius: 20px; font-size: 14px; }
+        .status-active { background: #27ae60; }
+        .status-graduated { background: #e94560; }
+        
+        .progress-bar { background: #0f3460; height: 25px; border-radius: 12px; overflow: hidden; margin: 10px 0; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #e94560, #ff6b6b); display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: bold; }
+        
+        .competency-list { list-style: none; }
+        .competency-list li { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #0f3460; }
+        .comp-status { width: 20px; height: 20px; border-radius: 50%; margin-right: 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
+        .comp-complete { background: #27ae60; }
+        .comp-progress { background: #f39c12; }
+        .comp-pending { background: #555; }
+        
+        .week-tabs { display: flex; gap: 5px; margin-bottom: 15px; flex-wrap: wrap; }
+        .week-tab { padding: 8px 16px; background: #0f3460; border: none; border-radius: 5px; color: #888; cursor: pointer; }
+        .week-tab.active { background: #e94560; color: #fff; }
+        
+        .checklist { list-style: none; }
+        .checklist li { padding: 10px; margin: 5px 0; background: #0f3460; border-radius: 5px; display: flex; align-items: center; }
+        .checklist input { margin-right: 12px; width: 20px; height: 20px; accent-color: #e94560; }
+        .checklist .done { text-decoration: line-through; color: #888; }
+        
+        .attendance-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+        .attendance-day { text-align: center; padding: 15px 5px; background: #0f3460; border-radius: 8px; }
+        .attendance-day.present { border: 2px solid #27ae60; }
+        .attendance-day.absent { border: 2px solid #e74c3c; }
+        .day-label { font-size: 12px; color: #888; }
+        .day-status { font-weight: bold; margin-top: 5px; }
+        
+        .assignment-card { background: #0f3460; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .assignment-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .assignment-title { font-weight: bold; }
+        .assignment-score { color: #27ae60; font-weight: bold; }
+        .assignment-score.pending { color: #f39c12; }
+        
+        .tooling-u-link { display: inline-block; padding: 10px 20px; background: #3498db; color: #fff; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+        .tooling-u-link:hover { background: #2980b9; }
+        
+        .quick-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+        .action-btn { padding: 10px 20px; background: #0f3460; border: none; border-radius: 5px; color: #fff; cursor: pointer; }
+        .action-btn:hover { background: #e94560; }
+        
+        .schedule-today { background: #0f3460; padding: 15px; border-radius: 8px; margin-top: 15px; }
+        .period-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #16213e; }
+        .period-item:last-child { border-bottom: none; }
+        
+        .notes-section { margin-top: 20px; }
+        .notes-input { width: 100%; background: #0f3460; border: none; color: #fff; padding: 15px; border-radius: 8px; min-height: 100px; }
+        
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .attendance-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CNC Class Dashboard</h1>
+        <div class="subtitle" id="currentDate"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Student Overview -->
+        <div class="card" style="margin-bottom: 20px;">
+            <div class="student-header">
+                <div class="student-name" id="studentName">Loading...</div>
+                <div class="student-status status-active" id="studentStatus">Active</div>
+            </div>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+                <div>
+                    <div style="color: #888; font-size: 14px;">Start Date</div>
+                    <div id="startDate">--</div>
+                </div>
+                <div>
+                    <div style="color: #888; font-size: 14px;">Graduation</div>
+                    <div id="gradDate">--</div>
+                </div>
+                <div>
+                    <div style="color: #888; font-size: 14px;">Current Week</div>
+                    <div id="currentWeek">--</div>
+                </div>
+                <div>
+                    <div style="color: #888; font-size: 14px;">Days Completed</div>
+                    <div id="daysCompleted">--</div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                    <span>Class Progress</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid">
+            <!-- Competencies -->
+            <div class="card">
+                <h2>Competencies</h2>
+                <ul class="competency-list" id="competencyList"></ul>
+            </div>
+            
+            <!-- Attendance -->
+            <div class="card">
+                <h2>Attendance - This Week</h2>
+                <div class="attendance-grid" id="attendanceGrid"></div>
+                <div style="margin-top: 15px; display: flex; gap: 20px; font-size: 14px;">
+                    <span><span style="color: #27ae60;">●</span> Present</span>
+                    <span><span style="color: #e74c3c;">●</span> Absent</span>
+                    <span><span style="color: #888;">●</span> Future</span>
+                </div>
+            </div>
+            
+            <!-- Tooling U -->
+            <div class="card">
+                <h2>Tooling U</h2>
+                <div id="toolingUSection">
+                    <div style="color: #888; margin-bottom: 10px;">Training Progress:</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="toolingProgress" style="width: 0%">0%</div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <strong>Latest Course:</strong>
+                        <div id="latestCourse" style="color: #888; margin-top: 5px;">No courses completed</div>
+                    </div>
+                    <a href="https://www.toolingu.com" target="_blank" class="tooling-u-link">Open Tooling U →</a>
+                </div>
+            </div>
+            
+            <!-- Assignments -->
+            <div class="card">
+                <h2>In-Class Assignments</h2>
+                <div id="assignmentsList"></div>
+            </div>
+            
+            <!-- Week 1 Requirements -->
+            <div class="card">
+                <h2>Week 1 Requirements</h2>
+                <p style="color: #888; font-size: 14px; margin-bottom: 15px;">Digital documents required for completion</p>
+                <ul class="checklist" id="week1Checklist">
+                    <li><input type="checkbox"> <span>Safety Quiz</span></li>
+                    <li><input type="checkbox"> <span>Blueprint Reading Quiz</span></li>
+                    <li><input type="checkbox"> <span>Measurement Log</span></li>
+                    <li><input type="checkbox"> <span>CNC Basics Assessment</span></li>
+                    <li><input type="checkbox"> <span>Tooling Introduction</span></li>
+                    <li><input type="checkbox"> <span>Shop Lingo Worksheet</span></li>
+                    <li><input type="checkbox"> <span>Speed & Feed Calculations</span></li>
+                    <li><input type="checkbox"> <span>First Article Inspection</span></li>
+                </ul>
+            </div>
+            
+            <!-- Today's Schedule -->
+            <div class="card">
+                <h2>Today's Schedule</h2>
+                <div class="schedule-today" id="todaySchedule">
+                    <div class="period-item"><span>Period 1</span><span id="p1">--</span></div>
+                    <div class="period-item"><span>Period 2</span><span id="p2">--</span></div>
+                    <div class="period-item"><span>Period 3</span><span id="p3">--</span></div>
+                    <div class="period-item"><span>Period 4</span><span id="p4">--</span></div>
+                </div>
+                <div id="scheduleNotes" style="color: #e94560; margin-top: 10px; font-size: 14px;"></div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="card">
+                <h2>Quick Actions</h2>
+                <div class="quick-actions">
+                    <button class="action-btn" onclick="addReflection()">+ Reflection</button>
+                    <button class="action-btn" onclick="logAttendance()">Log Attendance</button>
+                    <button class="action-btn" onclick="addAssignment()">+ Assignment</button>
+                    <button class="action-btn" onclick="updateToolingU()">Update Tooling U</button>
+                </div>
+            </div>
+            
+            <!-- Tasks -->
+            <div class="card">
+                <h2>Upcoming Tasks</h2>
+                <div id="taskList"></div>
+            </div>
+        </div>
+        
+        <!-- Notes -->
+        <div class="card notes-section">
+            <h2>Notes & Observations</h2>
+            <textarea class="notes-input" id="notesArea" placeholder="Add notes about the student..."></textarea>
+        </div>
+    </div>
+    
+    <script>
+        // Student Data
+        const studentData = {
+            "id": "marvin-001",
+            "name": "Marvin",
+            "start_date": "2026-02-17",
+            "graduation_date": "2026-02-27",
+            "status": "active",
+            "week": 8,
+            "day": 2,
+            "competencies": {
+                "cnc_operation": "in_progress",
+                "blueprint_reading": "completed",
+                "tooling": "in_progress",
+                "programming": "in_progress",
+                "speeds_feeds": "in_progress",
+                "safety": "completed",
+                "measurement": "completed"
+            },
+            "attendance": [
+                { "date": "2026-02-17", "present": true },
+                { "date": "2026-02-18", "present": true },
+                { "date": "2026-02-19", "present": true },
+                { "date": "2026-02-20", "present": true },
+                { "date": "2026-02-21", "present": true },
+                { "date": "2026-02-22", "present": false },
+                { "date": "2026-02-23", "present": null }
+            ],
+            "tooling_u": {
+                "progress": 65,
+                "latest_course": "CNC Fundamentals - Chapter 4",
+                "courses_completed": 12
+            },
+            "assignments": [
+                { "title": "Blueprint Quiz #1", "score": 92, "max_score": 100, "completed": true },
+                { "title": "Measurement Log", "score": 100, "max_score": 100, "completed": true },
+                { "title": "Speed/Feed Worksheet", "score": 88, "max_score": 100, "completed": true },
+                { "title": "Programming Assignment", "score": null, "max_score": 100, "completed": false },
+                { "title": "Mock Interview", "score": null, "max_score": 100, "completed": false }
+            ],
+            "notes": ""
+        };
+        
+        const schedule = {
+            "2026-02-23": { "day": 1, "periods": ["CNC", "Open Shop", "Tooling", "Open Shop"], "notes": "Safety meeting - bring SDS sheets" },
+            "2026-02-24": { "day": 2, "periods": ["CNC", "Open Shop", "Programming Practice", "Programming Practice"], "notes": "" },
+            "2026-02-25": { "day": 3, "periods": ["CNC", "Open Shop", "Programming Practice", "Programming Practice"], "notes": "Marvin: Mock Interview" },
+            "2026-02-26": { "day": 4, "periods": ["Open", "Open", "Project Work", "Project Work"], "notes": "" },
+            "2026-02-27": { "day": 5, "periods": ["Grad Prep", "Graduation Ceremony", "Review", "Review"], "notes": "GRADUATION DAY" }
+        };
+        
+        const tasks = [
+            { "title": "Send email to RPS about interviews", "due": "2026-02-23", "priority": "high" },
+            { "title": "Tell John to get cutters from KBC", "due": "2026-02-23", "priority": "high" },
+            { "title": "Safety meeting prep", "due": "2026-02-23", "priority": "high" },
+            { "title": "Marvin Mock Interview", "due": "2026-02-25", "priority": "high" },
+            { "title": "Finish Allegro prototype", "due": "2026-02-27", "priority": "medium" }
+        ];
+        
+        // Initialize
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { 
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+        });
+        
+        // Student Info
+        document.getElementById('studentName').textContent = studentData.name;
+        document.getElementById('startDate').textContent = studentData.start_date;
+        document.getElementById('gradDate').textContent = studentData.graduation_date;
+        document.getElementById('currentWeek').textContent = `Week ${studentData.week}, Day ${studentData.day}`;
+        
+        const daysCompleted = studentData.day + (studentData.week - 1) * 5;
+        const totalDays = 40;
+        const progress = Math.round((daysCompleted / totalDays) * 100);
+        document.getElementById('daysCompleted').textContent = `${daysCompleted} / ${totalDays}`;
+        document.getElementById('progressPercent').textContent = `${progress}%`;
+        document.getElementById('progressFill').style.width = `${progress}%`;
+        
+        if (studentData.status === 'graduated') {
+            document.getElementById('studentStatus').textContent = 'Graduated';
+            document.getElementById('studentStatus').className = 'student-status status-graduated';
+        }
+        
+        // Competencies
+        const compList = document.getElementById('competencyList');
+        const compNames = {
+            'cnc_operation': 'CNC Operation',
+            'blueprint_reading': 'Blueprint Reading',
+            'tooling': 'Tooling',
+            'programming': 'Programming',
+            'speeds_feeds': 'Speeds & Feeds',
+            'safety': 'Safety',
+            'measurement': 'Measurement'
+        };
+        
+        for (const [key, status] of Object.entries(studentData.competencies)) {
+            const li = document.createElement('li');
+            let compClass = 'comp-pending';
+            if (status === 'completed') compClass = 'comp-complete';
+            else if (status === 'in_progress') compClass = 'comp-progress';
+            
+            li.innerHTML = `<span class="comp-status ${compClass}">✓</span> ${compNames[key] || key}`;
+            compList.appendChild(li);
+        }
+        
+        // Attendance
+        const attGrid = document.getElementById('attendanceGrid');
+        const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+        const attendance = studentData.attendance.slice(-5); // Last 5 days
+        
+        attendance.forEach((day, i) => {
+            const div = document.createElement('div');
+            div.className = 'attendance-day';
+            if (day.present === true) div.classList.add('present');
+            else if (day.present === false) div.classList.add('absent');
+            
+            let status = 'Future';
+            if (day.present === true) status = 'Present';
+            else if (day.present === false) status = 'Absent';
+            
+            div.innerHTML = `<div class="day-label">${dayNames[i]}</div><div class="day-status">${status}</div>`;
+            attGrid.appendChild(div);
+        });
+        
+        // Tooling U
+        document.getElementById('toolingProgress').style.width = `${studentData.tooling_u.progress}%`;
+        document.getElementById('toolingProgress').textContent = `${studentData.tooling_u.progress}%`;
+        document.getElementById('latestCourse').textContent = studentData.tooling_u.latest_course;
+        
+        // Assignments
+        const assignList = document.getElementById('assignmentsList');
+        studentData.assignments.forEach(assign => {
+            const div = document.createElement('div');
+            div.className = 'assignment-card';
+            
+            let scoreHtml = '<span class="assignment-score pending">Pending</span>';
+            if (assign.score !== null) {
+                const percent = Math.round((assign.score / assign.max_score) * 100);
+                scoreHtml = `<span class="assignment-score">${assign.score}/${assign.max_score} (${percent}%)</span>`;
+            }
+            
+            div.innerHTML = `
+                <div class="assignment-header">
+                    <span class="assignment-title">${assign.title}</span>
+                    ${scoreHtml}
+                </div>
+            `;
+            assignList.appendChild(div);
+        });
+        
+        // Today's Schedule
+        const today = new Date().toISOString().split('T')[0];
+        const todaySchedule = schedule[today];
+        
+        if (todaySchedule) {
+            document.getElementById('p1').textContent = todaySchedule.periods[0];
+            document.getElementById('p2').textContent = todaySchedule.periods[1];
+            document.getElementById('p3').textContent = todaySchedule.periods[2];
+            document.getElementById('p4').textContent = todaySchedule.periods[3];
+            if (todaySchedule.notes) {
+                document.getElementById('scheduleNotes').textContent = todaySchedule.notes;
+            }
+        }
+        
+        // Tasks
+        const taskList = document.getElementById('taskList');
+        tasks.forEach(task => {
+            const div = document.createElement('div');
+            div.style.padding = '10px';
+            div.style.margin = '5px 0';
+            div.style.background = '#0f3460';
+            div.style.borderRadius = '5px';
+            div.style.display = 'flex';
+            div.style.justifyContent = 'space-between';
+            
+            let priorityColor = '#888';
+            if (task.priority === 'high') priorityColor = '#e94560';
+            else if (task.priority === 'medium') priorityColor = '#f39c12';
+            
+            div.innerHTML = `
+                <span>${task.title}</span>
+                <span style="color: ${priorityColor}; font-size: 12px;">${task.due}</span>
+            `;
+            taskList.appendChild(div);
+        });
+        
+        // Notes
+        document.getElementById('notesArea').value = studentData.notes;
+        
+        // Functions
+        function addReflection() {
+            alert('Reflection form would open here');
+        }
+        
+        function logAttendance() {
+            alert('Attendance logging would open here');
+        }
+        
+        function addAssignment() {
+            alert('Assignment form would open here');
+        }
+        
+        function updateToolingU() {
+            alert('Tooling U sync would happen here');
+        }
+        
+        // Auto-save notes
+        document.getElementById('notesArea').addEventListener('change', function() {
+            console.log('Notes saved:', this.value);
+        });
+    </script>
+</body>
+</html>

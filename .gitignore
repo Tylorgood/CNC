@@ -1,0 +1,110 @@
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+ENV/
+env/
+.venv
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# CAD/CAM & CNC
+*.nc
+*.gcode
+*.gc
+*.tap
+*.dxf
+*.dwg
+*.step
+*.stl
+*.iges
+*.igs
+*.sldprt
+*.sldasm
+*.f3d
+*.f3z
+Fusion 360 Autosave/
+*.~
+
+# Large binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+*.iso
+*.img
+*.7z
+*.rar
+
+# Logs
+*.log
+logs/
+*.sqlite
+*.db
+
+# Build artifacts
+*.o
+*.obj
+*.class
+target/
+out/
+bin/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+
+# Credentials & secrets (NEVER commit)
+*secret*
+*credential*
+*.key
+*.pem
+*.cert
+.env
+.env.local
+cookies.json
+token*

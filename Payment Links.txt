@@ -1,0 +1,11 @@
+Payment Links
+
+1 https://buy.stripe.com/test_8x200beC51YJ3Jv7c98so00                bussiness in a box
+
+2 https://buy.stripe.com/test_28E4gr8dH0UF5RD9kh8so01          project build
+
+3 https://buy.stripe.com/test_00w5kv8dHbzj6VHeEB8so02           Task
+
+4 https://buy.stripe.com/test_eVq6oz51v46R4NzeEB8so03             quick
+
+5 https://formspree.io/f/mreajgvv                                                       formspree

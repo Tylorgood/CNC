@@ -1,0 +1,1 @@
+https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=915508194576-vsjcp0r3c4gbrc9oaemv4aublgvalfah.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&state=Sd6tPo5iGHQ62I0P9TIvZJZe8mgEdF&access_type=offline&prompt=consent
